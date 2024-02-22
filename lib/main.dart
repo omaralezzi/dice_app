@@ -19,16 +19,31 @@ void main() {
 class DicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Expanded(
-          child: Image(
-            image: AssetImage('images/dice1.png'),
-          ),
-        ),
-        Expanded(
-          child: Image(
-            image: AssetImage('images/dice1.png'),
+        Center(
+          child: Row(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: InkWell(
+                    onTap: () {
+                      // Add your button click logic here
+                      print('Button 1 clicked!');
+                    },
+                    child: Image.asset('images/dice1.png'),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Image.asset('images/dice2.png'),
+                ),
+              ),
+            ],
           ),
         ),
       ],
