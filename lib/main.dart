@@ -1,8 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  return runApp(
+  runApp(
     MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.red,
@@ -16,7 +18,22 @@ void main() {
   );
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
+  @override
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int dice1Number = 1;
+  int dice2Number = 1;
+
+  void rollDice() {
+    setState(() {
+      dice1Number = Random().nextInt(6) + 1;
+      dice2Number = Random().nextInt(6) + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,17 +47,21 @@ class DicePage extends StatelessWidget {
                   padding: EdgeInsets.all(10.0),
                   child: InkWell(
                     onTap: () {
-                      // Add your button click logic here
-                      print('Button 1 clicked!');
+                      rollDice();
                     },
-                    child: Image.asset('images/dice1.png'),
+                    child: Image.asset('images/dice$dice1Number.png'),
                   ),
                 ),
               ),
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.all(10.0),
-                  child: Image.asset('images/dice2.png'),
+                  child: InkWell(
+                    onTap: () {
+                      rollDice();
+                    },
+                    child: Image.asset('images/dice$dice2Number.png'),
+                  ),
                 ),
               ),
             ],
